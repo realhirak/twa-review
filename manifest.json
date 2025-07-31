@@ -1,0 +1,16 @@
+{
+  "short_name": "TWA Review",
+  "name": "TWA Review",
+  "description": "The web app that shows TWA review script example.",
+  "icons": [
+    {
+      "src": "icon.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/?utm_source=twa",
+  "display": "standalone",
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff",
+}
