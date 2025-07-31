@@ -1,7 +1,7 @@
 {
-  "short_name": "TWA Review",
-  "name": "TWA Review",
-  "description": "The web app that shows TWA review script example.",
+  "short_name": "Review My TWA",
+  "name": "Review My TWA",
+  "description": "The web app that shows Review My TWA script example.",
   "icons": [
     {
       "src": "icon.png",
