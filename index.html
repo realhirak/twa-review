@@ -404,7 +404,7 @@
   }
 
   function matchAnyTWAConditions() {
-    const hasUTM = window.location.search.includes("utm_medium=twa");
+    const hasUTM = window.location.search.includes("utm_source=twa");
     const hasReferrer = _packageName && document.referrer.includes(`android-app://${_packageName}`);
     const hasLocal = localStorage.getItem("isTWA") === "true";
 
@@ -412,7 +412,7 @@
   }
 
   async function detectTWA() {
-    if (window.location.search.includes("utm_medium=pwa")) {
+    if (window.location.search.includes("utm_source=pwa")) {
     _isTWA = false;
     return;
     }
