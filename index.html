@@ -419,6 +419,11 @@
     
     await fetchPackageName();
 
+    if (!_packageName) {
+    _isTWA = false;
+    return;
+    }
+
     if (baseDetection() && matchAnyTWAConditions()) {
       _isTWA = true;
       localStorage.setItem("isTWA", "true");
