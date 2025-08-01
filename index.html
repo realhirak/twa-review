@@ -16,16 +16,23 @@
       position: relative;
       overflow-x: hidden;
     }
+    h1,h2,h3,h4,h5,p{margin:20px}
   </style>
 </head>
 
 <body>
 
-  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste et omnis aperiam hic quam autem cumque, architecto
-    voluptate sequi odio harum quibusdam itaque repellat voluptatum ullam, nam nesciunt, iure sint.</p>
+  <h1>Using Review My TWA.js</h1>
 
+  <p id="twa-status"></p>
 
-
+  <script>
+    if (ReviewMyTWA.isTWA) {
+    document.getElementById("twa-status").textContent = "This is a TWA";
+    } else {
+      document.getElementById("twa-status").textContent = "This is not a TWA";
+    }
+  </script>
   
 
   <script>
