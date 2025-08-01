@@ -139,6 +139,60 @@
         }
       }
 
+      let _manifestName = null;
+let _manifestIcon = null;
+
+async function fetchManifestData() {
+  const urls = ["/manifest.json", "/manifest.webmanifest"];
+
+  for (const url of urls) {
+    try {
+      const response = await fetch(url, { credentials: "same-origin" });
+      if (!response.ok) continue;
+
+      const manifest = await response.json();
+
+      const name = manifest.name || manifest.short_name || null;
+      const icons = Array.isArray(manifest.icons) ? manifest.icons : [];
+
+      // Find the icon with the highest resolution
+      let largestIcon = null;
+      let maxSize = 0;
+
+      for (const icon of icons) {
+        const size = icon.sizes?.split("x")[0]; // Get width from "192x192"
+        const numericSize = parseInt(size, 10);
+
+        if (!isNaN(numericSize) && numericSize > maxSize) {
+          maxSize = numericSize;
+          largestIcon = icon.src;
+        }
+      }
+
+      if (name && largestIcon) {
+        _manifestName = name;
+        _manifestIcon = largestIcon;
+        return; // Success — no need to try next manifest
+      }
+    } catch (e) {
+      // Failed, try next URL
+    }
+  }
+
+  // Fallback — required data not found
+  _isTWA = false;
+}
+
+      function updateAppInfoUI() {
+  if (!_manifestName || !_manifestIcon) return;
+
+  const titleEl = document.getElementById("rtwa-app-title-text");
+  const iconEl = document.querySelector(".rtwa-app-icon");
+
+  if (titleEl) titleEl.textContent = _manifestName;
+  if (iconEl) iconEl.src = _manifestIcon;
+      }
+
       function baseDetection() {
         return (
           typeof window !== "undefined" &&
@@ -168,7 +222,15 @@
           return;
         }
 
+        await fetchManifestData();
+
+  if (!_manifestName || !_manifestIcon) {
+    _isTWA = false;
+    return;
+  }
+
         if (baseDetection() && matchAnyTWAConditions()) {
+          updateAppInfoUI();
           _isTWA = true;
           localStorage.setItem("isTWA", "true");
           updateInternalLinks();
