@@ -408,8 +408,15 @@ async function fetchManifestData() {
     // Example usage
     ReviewMyTWA.showAfter(7); // Show dialog after 7 days when user first time open your app.
 
-    // Set dialog theme, default to system
-  ReviewMyTWA.setTheme("light");
+    // Set to dark mode (if ReviewMyTWA.setTheme is not mentioned, it uses default system theme. Available options: light, dark, system)
+    ReviewMyTWA.setTheme("system");
+
+  // Or light mode
+  // ReviewMyTWA.setTheme("light");
+
+  // Or follow system preference (default behavior)
+  // ReviewMyTWA.setTheme("system");
+
   </script>
 
 </body>
