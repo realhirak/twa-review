@@ -9,10 +9,7 @@
   <title>Review My TWA</title>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Product+Sans&display=swap');
-
     body {
-      font-family: 'Product Sans', Arial, sans-serif;
       background-color: #fff;
       color: #111827;
       margin: 0;
@@ -20,8 +17,92 @@
       position: relative;
       overflow-x: hidden;
     }
+  </style>
+</head>
+
+<body>
+
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste et omnis aperiam hic quam autem cumque, architecto
+    voluptate sequi odio harum quibusdam itaque repellat voluptatum ullam, nam nesciunt, iure sint.</p>
+  <div class="rtwa-popup-backdrop" aria-hidden="true">
+
+    <div class="rtwa-popup" role="dialog" aria-modal="true" aria-labelledby="popupTitle">
+      <div class="rtwa-header">
+        <div class="rtwa-header-left pointer-events-none select-none">
+          <img src="visual-identity_logos_880x572-3.width-1440.format-webp.webp" alt="Google Play logo" width="24"
+            height="24" />
+          <span>Google Play</span>
+        </div>
+
+      </div>
+      <div class="rtwa-content">
+        <div class="rtwa-app-info pointer-events-none select-none">
+          <img
+            src="https://play-lh.googleusercontent.com/8Nu3gtUhArD8efOANJTSAyo9vuM_ZxRHENwHPmgFlVp2bgAzqJyhWpF-jLPF99I2LOao=w480-h960-rw"
+            alt="App icon" class="rtwa-app-icon" width="40" height="40" />
+          <div class="rtwa-app-text">
+            <p id="rtwa-app-title-text">Instagram</p>
+            <p id="rtwa-app-desc-text">Enjoying this app? Rate and help us improve with a review.
+            </p>
+          </div>
+        </div>
+
+
+        <div class="rtwa-stars text-center justify-center" role="radiogroup" aria-label="Star rating">
+          <button aria-label="Star 1" class="rtwa-star-button" type="button" tabindex="0" aria-pressed="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"
+              aria-hidden="true" focusable="false">
+              <polygon
+                points="12 17.27 18.18 21 15.64 13.97 21 9.24 13.81 8.63 12 2 10.19 8.63 3 9.24 8.36 13.97 5.82 21 12 17.27" />
+            </svg>
+          </button>
+          <button aria-label="Star 2" class="rtwa-star-button" type="button" tabindex="0" aria-pressed="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"
+              aria-hidden="true" focusable="false">
+              <polygon
+                points="12 17.27 18.18 21 15.64 13.97 21 9.24 13.81 8.63 12 2 10.19 8.63 3 9.24 8.36 13.97 5.82 21 12 17.27" />
+            </svg>
+          </button>
+          <button aria-label="Star 3" class="rtwa-star-button" type="button" tabindex="0" aria-pressed="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"
+              aria-hidden="true" focusable="false">
+              <polygon
+                points="12 17.27 18.18 21 15.64 13.97 21 9.24 13.81 8.63 12 2 10.19 8.63 3 9.24 8.36 13.97 5.82 21 12 17.27" />
+            </svg>
+          </button>
+          <button aria-label="Star 4" class="rtwa-star-button" type="button" tabindex="0" aria-pressed="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"
+              aria-hidden="true" focusable="false">
+              <polygon
+                points="12 17.27 18.18 21 15.64 13.97 21 9.24 13.81 8.63 12 2 10.19 8.63 3 9.24 8.36 13.97 5.82 21 12 17.27" />
+            </svg>
+          </button>
+          <button aria-label="Star 5" class="rtwa-star-button" type="button" tabindex="0" aria-pressed="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"
+              aria-hidden="true" focusable="false">
+              <polygon
+                points="12 17.27 18.18 21 15.64 13.97 21 9.24 13.81 8.63 12 2 10.19 8.63 3 9.24 8.36 13.97 5.82 21 12 17.27" />
+            </svg>
+          </button>
+        </div>
+        <div class="rtwa-actions">
+          <button id="rtwa-later-text" class="rtwa-btn rtwa-btn-cancel" type="button">Maybe later</button>
+          <button id="rtwa-review-text" class="rtwa-btn rtwa-btn-submit" type="submit">Review</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script>
+
+    const ReviewMyTWA = (() => {
+      function injectRTWAStyles() {
+  const css = `
+    @import url('https://fonts.googleapis.com/css2?family=Product+Sans&display=swap');
 
     .rtwa-popup {
+      font-family: 'Product Sans', Arial, sans-serif;
       width: 100%;
       max-width: 768px;
       border: 1px solid #e5e7eb;
@@ -300,86 +381,15 @@
     .dark .rtwa-popup-backdrop {
       background-color: rgba(0, 0, 0, 0.6);
     }
-  </style>
-</head>
+  `;
 
-<body>
+  const styleTag = document.createElement("style");
+  styleTag.setAttribute("id", "rtwa-styles");
+  styleTag.textContent = css;
+  document.head.appendChild(styleTag);
+}
 
-  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste et omnis aperiam hic quam autem cumque, architecto
-    voluptate sequi odio harum quibusdam itaque repellat voluptatum ullam, nam nesciunt, iure sint.</p>
-  <div class="rtwa-popup-backdrop" aria-hidden="true">
-
-    <div class="rtwa-popup" role="dialog" aria-modal="true" aria-labelledby="popupTitle">
-      <div class="rtwa-header">
-        <div class="rtwa-header-left pointer-events-none select-none">
-          <img src="visual-identity_logos_880x572-3.width-1440.format-webp.webp" alt="Google Play logo" width="24"
-            height="24" />
-          <span>Google Play</span>
-        </div>
-
-      </div>
-      <div class="rtwa-content">
-        <div class="rtwa-app-info pointer-events-none select-none">
-          <img
-            src="https://play-lh.googleusercontent.com/8Nu3gtUhArD8efOANJTSAyo9vuM_ZxRHENwHPmgFlVp2bgAzqJyhWpF-jLPF99I2LOao=w480-h960-rw"
-            alt="App icon" class="rtwa-app-icon" width="40" height="40" />
-          <div class="rtwa-app-text">
-            <p id="rtwa-app-title-text">Instagram</p>
-            <p id="rtwa-app-desc-text">Enjoying this app? Rate and help us improve with a review.
-            </p>
-          </div>
-        </div>
-
-
-        <div class="rtwa-stars text-center justify-center" role="radiogroup" aria-label="Star rating">
-          <button aria-label="Star 1" class="rtwa-star-button" type="button" tabindex="0" aria-pressed="false">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"
-              aria-hidden="true" focusable="false">
-              <polygon
-                points="12 17.27 18.18 21 15.64 13.97 21 9.24 13.81 8.63 12 2 10.19 8.63 3 9.24 8.36 13.97 5.82 21 12 17.27" />
-            </svg>
-          </button>
-          <button aria-label="Star 2" class="rtwa-star-button" type="button" tabindex="0" aria-pressed="false">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"
-              aria-hidden="true" focusable="false">
-              <polygon
-                points="12 17.27 18.18 21 15.64 13.97 21 9.24 13.81 8.63 12 2 10.19 8.63 3 9.24 8.36 13.97 5.82 21 12 17.27" />
-            </svg>
-          </button>
-          <button aria-label="Star 3" class="rtwa-star-button" type="button" tabindex="0" aria-pressed="false">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"
-              aria-hidden="true" focusable="false">
-              <polygon
-                points="12 17.27 18.18 21 15.64 13.97 21 9.24 13.81 8.63 12 2 10.19 8.63 3 9.24 8.36 13.97 5.82 21 12 17.27" />
-            </svg>
-          </button>
-          <button aria-label="Star 4" class="rtwa-star-button" type="button" tabindex="0" aria-pressed="false">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"
-              aria-hidden="true" focusable="false">
-              <polygon
-                points="12 17.27 18.18 21 15.64 13.97 21 9.24 13.81 8.63 12 2 10.19 8.63 3 9.24 8.36 13.97 5.82 21 12 17.27" />
-            </svg>
-          </button>
-          <button aria-label="Star 5" class="rtwa-star-button" type="button" tabindex="0" aria-pressed="false">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"
-              aria-hidden="true" focusable="false">
-              <polygon
-                points="12 17.27 18.18 21 15.64 13.97 21 9.24 13.81 8.63 12 2 10.19 8.63 3 9.24 8.36 13.97 5.82 21 12 17.27" />
-            </svg>
-          </button>
-        </div>
-        <div class="rtwa-actions">
-          <button id="rtwa-later-text" class="rtwa-btn rtwa-btn-cancel" type="button">Maybe later</button>
-          <button id="rtwa-review-text" class="rtwa-btn rtwa-btn-submit" type="submit">Review</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-  <script>
-
-    const ReviewMyTWA = (() => {
+      injectRTWAStyles();
       const defaultShowAfter = 3;
       let _isTWA = false;
       let _showAfterDays = defaultShowAfter;
