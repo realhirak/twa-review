@@ -412,6 +412,11 @@
   }
 
   async function detectTWA() {
+    if (window.location.search.includes("utm_medium=pwa")) {
+    _isTWA = false;
+    return;
+    }
+    
     await fetchPackageName();
 
     if (baseDetection() && matchAnyTWAConditions()) {
