@@ -33,18 +33,15 @@
       } else {
         document.getElementById("twa-status").textContent = "This is not a TWA";
       }
+
+      // Example usage
+      ReviewMyTWA.showAfter(7); // Show dialog after 7 days when user first time open your app.
+
+      // Set to system mode (if ReviewMyTWA.setTheme is not mentioned, it uses default system theme. Available options: light, dark, system)
+      ReviewMyTWA.setTheme("system");
     });
   </script>
   
-
-  <script>
-    // Example usage
-    ReviewMyTWA.showAfter(7); // Show dialog after 7 days when user first time open your app.
-
-    // Set to system mode (if ReviewMyTWA.setTheme is not mentioned, it uses default system theme. Available options: light, dark, system)
-    ReviewMyTWA.setTheme("system");
-
-  </script>
 
   <script src="https://cdn.jsdelivr.net/npm/review-my-twa@1.0.1/dist/review-my-pwa.min.js"></script>
 </body>
