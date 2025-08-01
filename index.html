@@ -493,6 +493,13 @@
     const backdrop = document.querySelector(".rtwa-popup-backdrop");
     if (!backdrop) return;
 
+    backdrop.addEventListener("click", (e) => {
+    if (e.target === backdrop) {
+      setCookie("maybeLaterClicked", "true", 7);
+      hideReviewDialog();
+    }
+    });
+
     backdrop.querySelectorAll(".rtwa-star-button").forEach(btn => {
       btn.addEventListener("click", () => {
         localStorage.setItem("appReviewed", "true");
