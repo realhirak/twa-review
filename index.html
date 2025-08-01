@@ -98,7 +98,7 @@
 
     const ReviewMyTWA = (() => {
       function injectRTWAStyles() {
-  const css = `
+        const css = `
     @import url('https://fonts.googleapis.com/css2?family=Product+Sans&display=swap');
 
     .rtwa-popup {
@@ -383,11 +383,11 @@
     }
   `;
 
-  const styleTag = document.createElement("style");
-  styleTag.setAttribute("id", "rtwa-styles");
-  styleTag.textContent = css;
-  document.head.appendChild(styleTag);
-}
+        const styleTag = document.createElement("style");
+        styleTag.setAttribute("id", "rtwa-styles");
+        styleTag.textContent = css;
+        document.head.appendChild(styleTag);
+      }
 
       injectRTWAStyles();
       const defaultShowAfter = 3;
