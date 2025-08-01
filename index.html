@@ -377,20 +377,69 @@
 
 
 <script>
-const ReviewMyTWA = (() => {
+
+  const ReviewMyTWA = (() => {
   const defaultShowAfter = 3;
   let _isTWA = false;
   let _showAfterDays = defaultShowAfter;
+  let _packageName = null;
 
-  function detectTWA() {
-    const ua = navigator.userAgent || "";
-    const isAndroid = /Android/i.test(ua);
-    const isStandalone = window.matchMedia('(display-mode: standalone)').matches;
-    _isTWA = isAndroid && isStandalone;
+  async function fetchPackageName() {
+    try {
+      const res = await fetch('/.well-known/assetlinks.json');
+      const json = await res.json();
+      const first = json?.[0];
+      _packageName = first?.target?.package_name || null;
+    } catch (e) {
+      console.warn('[ReviewMyTWA] Unable to fetch assetlinks.json for package name detection.', e);
+    }
+  }
+
+  function baseDetection() {
+    return (
+      typeof window !== "undefined" &&
+      (window.matchMedia('(display-mode: standalone)').matches ||
+        window.navigator.standalone === true)
+    );
+  }
+
+  function matchAnyTWAConditions() {
+    const hasUTM = window.location.search.includes("utm_medium=twa");
+    const hasReferrer = _packageName && document.referrer.includes(`android-app://${_packageName}`);
+    const hasLocal = localStorage.getItem("isTWA") === "true";
+
+    return hasUTM || hasReferrer || hasLocal;
+  }
+
+  async function detectTWA() {
+    await fetchPackageName();
+
+    if (baseDetection() && matchAnyTWAConditions()) {
+      _isTWA = true;
+      localStorage.setItem("isTWA", "true");
+      updateInternalLinks();
+    } else {
+      _isTWA = false;
+    }
   }
 
   function isTWA() {
     return _isTWA;
+  }
+
+  function updateInternalLinks() {
+    const anchors = document.querySelectorAll("a[href^='/'], a[href^='" + location.origin + "']");
+    anchors.forEach(a => {
+      try {
+        const url = new URL(a.href, location.origin);
+        if (!url.searchParams.has("utm_medium")) {
+          url.searchParams.set("utm_medium", "twa");
+          a.href = url.toString();
+        }
+      } catch (e) {
+        console.warn('[ReviewMyTWA] Skipped malformed link:', a.href);
+      }
+    });
   }
 
   function setCookie(name, value, days) {
@@ -439,12 +488,10 @@ const ReviewMyTWA = (() => {
     const backdrop = document.querySelector(".rtwa-popup-backdrop");
     if (!backdrop) return;
 
-    const stars = backdrop.querySelectorAll(".rtwa-star-button");
-    stars.forEach(btn => {
+    backdrop.querySelectorAll(".rtwa-star-button").forEach(btn => {
       btn.addEventListener("click", () => {
         localStorage.setItem("appReviewed", "true");
         hideReviewDialog();
-        // Optionally: redirect to Play Store here
       });
     });
 
@@ -453,7 +500,6 @@ const ReviewMyTWA = (() => {
       reviewBtn.addEventListener("click", () => {
         localStorage.setItem("appReviewed", "true");
         hideReviewDialog();
-        // Optionally: window.open("https://play.google.com/store/apps/details?id=your.package.name", "_blank");
       });
     }
 
@@ -475,8 +521,8 @@ const ReviewMyTWA = (() => {
     }
   }
 
-  function init() {
-    detectTWA();
+  async function init() {
+    await detectTWA();
     if (shouldShowDialog()) {
       showReviewDialog();
     }
