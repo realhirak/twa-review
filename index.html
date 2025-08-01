@@ -123,38 +123,38 @@
       injectRTWADialogHTML();
 
       let _theme = "system";
-let _systemThemeListenerSet = false;
+      let _systemThemeListenerSet = false;
 
-function setTheme(theme = "system") {
-  _theme = theme;
+      function setTheme(theme = "system") {
+        _theme = theme;
 
-  const backdrop = document.querySelector(".rtwa-popup-backdrop");
-  if (!backdrop) return;
+        const backdrop = document.querySelector(".rtwa-popup-backdrop");
+        if (!backdrop) return;
 
-  backdrop.classList.remove("rtwa-dark");
+        backdrop.classList.remove("rtwa-dark");
 
-  if (_theme === "dark") {
-    backdrop.classList.add("rtwa-dark");
-  } else if (_theme === "system") {
-    applySystemTheme(backdrop);
-    if (!_systemThemeListenerSet) {
-      window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
-        applySystemTheme(backdrop);
-      });
-      _systemThemeListenerSet = true;
-    }
-  }
-}
+        if (_theme === "dark") {
+          backdrop.classList.add("rtwa-dark");
+        } else if (_theme === "system") {
+          applySystemTheme(backdrop);
+          if (!_systemThemeListenerSet) {
+            window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
+              applySystemTheme(backdrop);
+            });
+            _systemThemeListenerSet = true;
+          }
+        }
+      }
 
-function applySystemTheme(backdrop) {
-  if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-    backdrop.classList.add("rtwa-dark");
-  } else {
-    backdrop.classList.remove("rtwa-dark");
-  }
-}
+      function applySystemTheme(backdrop) {
+        if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+          backdrop.classList.add("rtwa-dark");
+        } else {
+          backdrop.classList.remove("rtwa-dark");
+        }
+      }
 
-  setTheme("system");
+      setTheme("system");
 
       const defaultShowAfter = 3;
       let _isTWA = false;
@@ -173,57 +173,57 @@ function applySystemTheme(backdrop) {
       }
 
       let _manifestName = null;
-let _manifestIcon = null;
+      let _manifestIcon = null;
 
-async function fetchManifestData() {
-  const urls = ["/manifest.json", "/manifest.webmanifest"];
+      async function fetchManifestData() {
+        const urls = ["/manifest.json", "/manifest.webmanifest"];
 
-  for (const url of urls) {
-    try {
-      const response = await fetch(url, { credentials: "same-origin" });
-      if (!response.ok) continue;
+        for (const url of urls) {
+          try {
+            const response = await fetch(url, { credentials: "same-origin" });
+            if (!response.ok) continue;
 
-      const manifest = await response.json();
+            const manifest = await response.json();
 
-      const name = manifest.name || manifest.short_name || null;
-      const icons = Array.isArray(manifest.icons) ? manifest.icons : [];
+            const name = manifest.name || manifest.short_name || null;
+            const icons = Array.isArray(manifest.icons) ? manifest.icons : [];
 
-      // Find the icon with the highest resolution
-      let largestIcon = null;
-      let maxSize = 0;
+            // Find the icon with the highest resolution
+            let largestIcon = null;
+            let maxSize = 0;
 
-      for (const icon of icons) {
-        const size = icon.sizes?.split("x")[0]; // Get width from "192x192"
-        const numericSize = parseInt(size, 10);
+            for (const icon of icons) {
+              const size = icon.sizes?.split("x")[0]; // Get width from "192x192"
+              const numericSize = parseInt(size, 10);
 
-        if (!isNaN(numericSize) && numericSize > maxSize) {
-          maxSize = numericSize;
-          largestIcon = icon.src;
+              if (!isNaN(numericSize) && numericSize > maxSize) {
+                maxSize = numericSize;
+                largestIcon = icon.src;
+              }
+            }
+
+            if (name && largestIcon) {
+              _manifestName = name;
+              _manifestIcon = largestIcon;
+              return; // Success — no need to try next manifest
+            }
+          } catch (e) {
+            // Failed, try next URL
+          }
         }
-      }
 
-      if (name && largestIcon) {
-        _manifestName = name;
-        _manifestIcon = largestIcon;
-        return; // Success — no need to try next manifest
+        // Fallback — required data not found
+        _isTWA = false;
       }
-    } catch (e) {
-      // Failed, try next URL
-    }
-  }
-
-  // Fallback — required data not found
-  _isTWA = false;
-}
 
       function updateAppInfoUI() {
-  if (!_manifestName || !_manifestIcon) return;
+        if (!_manifestName || !_manifestIcon) return;
 
-  const titleEl = document.getElementById("rtwa-app-title-text");
-  const iconEl = document.querySelector(".rtwa-app-icon");
+        const titleEl = document.getElementById("rtwa-app-title-text");
+        const iconEl = document.querySelector(".rtwa-app-icon");
 
-  if (titleEl) titleEl.textContent = _manifestName;
-  if (iconEl) iconEl.src = _manifestIcon;
+        if (titleEl) titleEl.textContent = _manifestName;
+        if (iconEl) iconEl.src = _manifestIcon;
       }
 
       function baseDetection() {
@@ -257,10 +257,10 @@ async function fetchManifestData() {
 
         await fetchManifestData();
 
-  if (!_manifestName || !_manifestIcon) {
-    _isTWA = false;
-    return;
-  }
+        if (!_manifestName || !_manifestIcon) {
+          _isTWA = false;
+          return;
+        }
 
         if (baseDetection() && matchAnyTWAConditions()) {
           updateAppInfoUI();
