@@ -1,4 +1,4 @@
-The example app of using ReviewMyTWA.js
+The example app of using Review My TWA.js
 
 Install and see the review dialog in-work.
 
