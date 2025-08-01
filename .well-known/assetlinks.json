@@ -1,0 +1,8 @@
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "com.reviewmytwa.app",
+        "sha256_cert_fingerprints": ["39:33:50:C4:E4:5A:6F:F2:C8:5E:95:A0:D8:FC:B7:0B:4F:CE:2D:B0:1D:BF:F4:33:BB:44:AE:98:F7:20:D3:29"]
+      }
+    }]
