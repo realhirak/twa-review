@@ -122,6 +122,38 @@
       injectRTWAStyles();
       injectRTWADialogHTML();
 
+      let _theme = "system";
+let _systemThemeListenerSet = false;
+
+function setTheme(theme = "system") {
+  _theme = theme;
+
+  const backdrop = document.querySelector(".rtwa-popup-backdrop");
+  if (!backdrop) return;
+
+  backdrop.classList.remove("rtwa-dark");
+
+  if (_theme === "dark") {
+    backdrop.classList.add("rtwa-dark");
+  } else if (_theme === "system") {
+    applySystemTheme(backdrop);
+    if (!_systemThemeListenerSet) {
+      window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
+        applySystemTheme(backdrop);
+      });
+      _systemThemeListenerSet = true;
+    }
+  }
+}
+
+function applySystemTheme(backdrop) {
+  if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+    backdrop.classList.add("rtwa-dark");
+  } else {
+    backdrop.classList.remove("rtwa-dark");
+  }
+}
+
       const defaultShowAfter = 3;
       let _isTWA = false;
       let _showAfterDays = defaultShowAfter;
@@ -364,6 +396,7 @@ async function fetchManifestData() {
         showAfter,
         showReviewDialog,
         hideReviewDialog,
+        setTheme,
       };
     })();
 
