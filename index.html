@@ -504,6 +504,9 @@
       btn.addEventListener("click", () => {
         localStorage.setItem("appReviewed", "true");
         hideReviewDialog();
+        if (_packageName) {
+          window.location.href = `https://play.google.com/store/apps/details?id=${_packageName}`;
+        }
       });
     });
 
@@ -512,6 +515,9 @@
       reviewBtn.addEventListener("click", () => {
         localStorage.setItem("appReviewed", "true");
         hideReviewDialog();
+        if (_packageName) {
+          window.location.href = `https://play.google.com/store/apps/details?id=${_packageName}`;
+        }
       });
     }
 
