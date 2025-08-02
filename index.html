@@ -31,13 +31,13 @@
     window.addEventListener("reviewMyTwaReady", () => {
 alert("reviewMyTwaReady event triggered!");
       
-     // if (ReviewMyTWA.isTWA) {
-       // document.getElementById("twa-status").textContent = "This is a TWA";
- //       alert("This is a TWA");
- //     } else {
-  //      document.getElementById("twa-status").textContent = "This is not a TWA";
-//        alert("This is not a TWA");
-//      }
+      if (ReviewMyTWA.isTWA) {
+        document.getElementById("twa-status").textContent = "This is a TWA";
+        alert("This is a TWA");
+      } else {
+        document.getElementById("twa-status").textContent = "This is not a TWA";
+        alert("This is not a TWA");
+      }
 
       // Example usage
       ReviewMyTWA.showAfter(3); // Show dialog after 3 days when user first time open your app.
@@ -47,7 +47,7 @@ alert("reviewMyTwaReady event triggered!");
     });
   </script>
 
-  <script src="https://cdn.jsdelivr.net/npm/review-my-twa@1.0.9/dist/review-my-twa.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/review-my-twa@1.0.10/dist/review-my-twa.min.js"></script>
 
   
 
