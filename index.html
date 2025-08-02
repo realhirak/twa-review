@@ -31,7 +31,7 @@
     window.addEventListener("reviewMyTwaReady", () => {
 alert("reviewMyTwaReady event triggered!");
       
-      if (ReviewMyTWA.isTWA) {
+      if (ReviewMyTWA.isTWA()) {
         document.getElementById("twa-status").textContent = "This is a TWA";
         alert("This is a TWA");
       } else {
