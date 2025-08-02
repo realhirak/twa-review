@@ -27,6 +27,27 @@
   <p id="twa-status"></p>
 
   <script>
+    alert("Test alert!");
+    window.addEventListener("reviewMyTwaReady", () => {
+alert("reviewMyTwaReady event triggered!");
+      
+      if (ReviewMyTWA.isTWA) {
+        document.getElementById("twa-status").textContent = "This is a TWA";
+        alert("This is a TWA");
+      } else {
+        document.getElementById("twa-status").textContent = "This is not a TWA";
+        alert("This is not a TWA");
+      }
+
+      // Example usage
+      ReviewMyTWA.showAfter(1); // Show dialog after 1 days when user first time open your app.
+
+      // Set to light mode (if ReviewMyTWA.setTheme is not mentioned, it uses default system theme. Available options: light, dark, system)
+      ReviewMyTWA.setTheme("light");
+    });
+  </script>
+
+  <script>
     const ReviewMyTWA = (() => {
       function injectRTWAStyles() {
         const css = `
@@ -408,26 +429,6 @@
     })();
   </script>
 
-  <script>
-    alert("Test alert!");
-    window.addEventListener("reviewMyTwaReady", () => {
-alert("reviewMyTwaReady event triggered!");
-      
-      if (ReviewMyTWA.isTWA) {
-        document.getElementById("twa-status").textContent = "This is a TWA";
-        alert("This is a TWA");
-      } else {
-        document.getElementById("twa-status").textContent = "This is not a TWA";
-        alert("This is not a TWA");
-      }
-
-      // Example usage
-      ReviewMyTWA.showAfter(1); // Show dialog after 1 days when user first time open your app.
-
-      // Set to light mode (if ReviewMyTWA.setTheme is not mentioned, it uses default system theme. Available options: light, dark, system)
-      ReviewMyTWA.setTheme("light");
-    });
-  </script>
   
 
   </body>
