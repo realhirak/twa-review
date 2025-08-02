@@ -28,10 +28,14 @@
 
   <script>
     window.addEventListener("reviewMyTwaReady", () => {
+alert("reviewMyTwaReady event triggered!");
+      
       if (ReviewMyTWA.isTWA) {
         document.getElementById("twa-status").textContent = "This is a TWA";
+        alert("This is a TWA");
       } else {
         document.getElementById("twa-status").textContent = "This is not a TWA";
+        alert("This is not a TWA");
       }
 
       // Example usage
