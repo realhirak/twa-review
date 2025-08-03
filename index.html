@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="manifest" href="/manifest.json" />
   <link rel="icon" href="/icon.png" />
-  <title>Review My TWA</title>
+  <title>Using Review My TWA.js</title>
   <style>
     body {
       background-color: #fff;
@@ -18,8 +18,10 @@
     }
     h1,h2,h3,h4,h5,p{margin:20px}
   </style>
-  <script type="module" src="https://cdn.jsdelivr.net/npm/review-my-twa@1.0.19/src/index.min.js"></script>
-  
+
+  <script type="module">
+    import reviewMyTwa from 'https://cdn.jsdelivr.net/npm/review-my-twa@1.1.0/+esm'
+  </script>
   <script>
     window.addEventListener("reviewMyTwaReady", () => {
 
