@@ -18,27 +18,24 @@
     }
     h1,h2,h3,h4,h5,p{margin:20px}
   </style>
-  <script type="module" src="
-https://cdn.jsdelivr.net/npm/review-my-twa@1.0.19/src/index.min.js
-"></script>
+  <script type="module" src="https://cdn.jsdelivr.net/npm/review-my-twa@1.0.19/src/index.min.js"></script>
+  
   <script>
-    alert("Test alert!");
     window.addEventListener("reviewMyTwaReady", () => {
-alert("reviewMyTwaReady event triggered!");
+
+      document.getElementById("event-status").textContent = "reviewMyTwaReady event triggered!";
       
       if (ReviewMyTWA.isTWA) {
         document.getElementById("twa-status").textContent = "This is a TWA";
-        alert("This is a TWA");
       } else {
-        document.getElementById("twa-status").textContent = "This is not a TWA";
-        alert("This is not a TWA");
+        document.getElementById("twa-status").textContent = "This is not a TWA";   
       }
 
       // Example usage
       ReviewMyTWA.showAfter(3); // Show dialog after 3 days when user first time open your app.
 
-      // Set to light mode (if ReviewMyTWA.setTheme is not mentioned, it uses default system theme. Available options: light, dark, system)
-      ReviewMyTWA.setTheme("light");
+      // Set to system mode (if ReviewMyTWA.setTheme is not mentioned, it uses default system theme. Available options: light, dark, system)
+      ReviewMyTWA.setTheme("system");
     });
   </script>
 </head>
@@ -47,6 +44,7 @@ alert("reviewMyTwaReady event triggered!");
 
   <h1>Using Review My TWA.js</h1>
 
+  <p id="event-status"></p>
   <p id="twa-status"></p>
 
 
