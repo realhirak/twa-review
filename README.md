@@ -1,4 +1,4 @@
-The example app of using Review My TWA.js
+The example app of using [Review My TWA.js](https://github.com/realhirak/review-my-twa)
 
 [Download](https://github.com/realhirak/twa-review/raw/refs/heads/main/Review-My-TWA-Test.apk) and Install the example app to see the review dialog in-work.
 
