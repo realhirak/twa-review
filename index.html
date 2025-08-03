@@ -27,9 +27,6 @@
   <p id="twa-status"></p>
 
 
-<script type="module">
-import reviewMyTwa from 'https://cdn.jsdelivr.net/npm/review-my-twa@1.0.18/+esm'
-</script>
   <script>
     alert("Test alert!");
     window.addEventListener("reviewMyTwaReady", () => {
@@ -49,6 +46,10 @@ alert("reviewMyTwaReady event triggered!");
       // Set to light mode (if ReviewMyTWA.setTheme is not mentioned, it uses default system theme. Available options: light, dark, system)
       ReviewMyTWA.setTheme("light");
     });
+  </script>
+
+  <script type="module">
+import reviewMyTwa from 'https://cdn.jsdelivr.net/npm/review-my-twa@1.0.18/+esm'
   </script>
   
   </body>
